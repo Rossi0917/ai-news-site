@@ -2,8 +2,8 @@
 title: "OpenAI共同創業者アンドレイ・カルパシー氏、AnthropicへAI改善のために参加"
 description: "AIの世界的権威であるアンドレイ・カルパシー氏がAnthropicに参加し、Claudeの改善に携わると報じられました。AI業界に与える影響を解説します。"
 pubDate: 2026-05-24
-sourceName: "Reddit / r/Anthropic"
-sourceUrl: "https://www.reddit.com/r/Anthropic/comments/1tiy6s4/"
+sourceName: "Axios"
+sourceUrl: "https://www.axios.com/2026/05/19/anthropic-openai-karpathy-andrej-claude"
 tags: ["AIニュース", "Anthropic", "Claude", "人事"]
 affiliate: false
 ---
@@ -32,4 +32,4 @@ AI業界では企業間の人材移動がモデルの方向性に大きく影響
 
 ## 参照元
 
-- [Reddit r/Anthropic 投稿](https://www.reddit.com/r/Anthropic/comments/1tiy6s4/)
+- [Axios: OpenAI co-founder Andrej Karpathy joins Anthropic](https://www.axios.com/2026/05/19/anthropic-openai-karpathy-andrej-claude)

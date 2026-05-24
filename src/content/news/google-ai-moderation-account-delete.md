@@ -3,7 +3,7 @@ title: "Google AIの誤検知でアーティストのアカウントが全削除
 description: "Google AIによる自動モデレーションが、アーティストのGoogleアカウント全体を誤って削除したと報告されています。AI審査の精度と影響範囲について解説します。"
 pubDate: 2026-05-24
 sourceName: "Reddit r/ChatGPT"
-sourceUrl: "https://www.reddit.com/r/ChatGPT/comments/1tiy6s4/"
+sourceUrl: "https://www.reddit.com/r/ChatGPT/comments/1tl7j6r/google_ai_moderation_delete_artists_entrire/"
 tags: ["AIニュース", "Google", "AIモデレーション", "アカウント", "リスク"]
 affiliate: false
 ---
@@ -32,4 +32,4 @@ Googleアカウントを業務や連絡先管理に使っている人は、バ�
 
 ## 参照元
 
-- [Reddit r/ChatGPT 投稿](https://www.reddit.com/r/ChatGPT/comments/1tiy6s4/)
+- [Reddit r/ChatGPT 投稿](https://www.reddit.com/r/ChatGPT/comments/1tl7j6r/google_ai_moderation_delete_artists_entrire/)

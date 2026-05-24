@@ -2,7 +2,7 @@
 title: "MicrosoftがAnthropicの社内ライセンスをキャンセル——AI利用コストが年間予算を超過"
 description: "Microsoftが社内向けAnthropicライセンスを解約したと報じられました。トークン課金制のAI利用が想定以上のコストを生んだことが背景にあります。AI導入コスト問題を解説します。"
 pubDate: 2026-05-24
-sourceName: "The Lowdown Blog / Reddit r/artificial"
+sourceName: "The Lowdown Blog"
 sourceUrl: "https://www.thelowdownblog.com/2026/05/microsoft-cancels-internal-anthropic.html"
 tags: ["AIニュース", "Microsoft", "Anthropic", "AI導入", "コスト"]
 affiliate: false

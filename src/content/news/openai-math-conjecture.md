@@ -2,7 +2,7 @@
 title: "OpenAIの推論AIが数学の未解決問題を反証——エルデシュの単位距離予想に反例"
 description: "OpenAIが開発した汎用推論モデルが、数学者エルデシュが提唱した未解決予想の反例を発見したと発表しました。AIが数学研究に本格参入したことを示す重要な出来事です。"
 pubDate: 2026-05-24
-sourceName: "OpenAI / Reddit r/MachineLearning"
+sourceName: "OpenAI"
 sourceUrl: "https://openai.com/index/model-disproves-discrete-geometry-conjecture/"
 tags: ["AIニュース", "OpenAI", "数学", "推論AI", "研究"]
 affiliate: false

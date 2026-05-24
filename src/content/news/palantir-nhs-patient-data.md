@@ -2,8 +2,8 @@
 title: "アムネスティが警告：米企業PalantirがイギリスNHSの患者データに無制限アクセス"
 description: "国際人権団体アムネスティ・インターナショナルが、米IT企業PalantirなどがイギリスNHS（国民保健サービス）の患者データに無制限のアクセスを許可されていると報告しました。"
 pubDate: 2026-05-24
-sourceName: "Amnesty International / Reddit r/artificial"
-sourceUrl: "https://www.reddit.com/r/artificial/comments/1tiy6s4/"
+sourceName: "The Guardian / Amnesty International UK"
+sourceUrl: "https://www.theguardian.com/society/2026/may/11/palantir-access-nhs-england-patient-data"
 tags: ["AIニュース", "プライバシー", "医療データ", "Palantir", "AI倫理"]
 affiliate: false
 ---
@@ -32,4 +32,5 @@ AI技術の発展には大量のデータが欠かせません。しかし、そ
 
 ## 参照元
 
-- [Reddit r/artificial 投稿](https://www.reddit.com/r/artificial/comments/1tiy6s4/)
+- [The Guardian: Palantir's access to identifiable NHS England patient data](https://www.theguardian.com/society/2026/may/11/palantir-access-nhs-england-patient-data)
+- [Amnesty International UK: No Palantir in our NHS](https://www.amnesty.org.uk/latest/no-gaza-genocide-links-in-our-nhs-organisations-urge-nhs-england-to-end-330m-palantir-contract/)

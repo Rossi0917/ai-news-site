@@ -2,7 +2,7 @@
 title: "Meta大量解雇の中、退職者が社内向け反AI動画を投稿——AI推進への内部摩擦が表面化"
 description: "Metaが大規模なレイオフを進める中、退職した元社員が社内向けに厳しい反AI批判動画を投稿したと報じられました。AI推進と雇用削減の関係について解説します。"
 pubDate: 2026-05-24
-sourceName: "Mother Jones / Reddit r/artificial"
+sourceName: "Mother Jones"
 sourceUrl: "https://www.motherjones.com/politics/2026/05/meta-video-ai-training-layoffs-video-exclusive-mci-bosworth-frenk/"
 tags: ["AIニュース", "Meta", "AI", "レイオフ", "雇用"]
 affiliate: false
