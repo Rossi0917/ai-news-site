@@ -1,0 +1,38 @@
+---
+import { getCollection, render } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("news");
+  return posts.map((post) => ({
+    params: { slug: post.id },
+    props: { post }
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+---
+
+<BaseLayout title={`${post.data.title} | AI News Compass`} description={post.data.description}>
+  <main class="article-page">
+    <article class="article-body">
+      <div class="article-meta">
+        <time datetime={post.data.pubDate.toISOString()}>
+          {post.data.pubDate.toLocaleDateString("ja-JP")}
+        </time>
+        <span>{post.data.sourceName}</span>
+      </div>
+      <h1>{post.data.title}</h1>
+      <p class="lead">{post.data.description}</p>
+      <div class="tag-row">
+        {post.data.tags.map((tag) => <span>{tag}</span>)}
+      </div>
+      <Content />
+      <div class="source-box">
+        <span>参照元</span>
+        <a href={post.data.sourceUrl} target="_blank" rel="noreferrer">{post.data.sourceName}</a>
+      </div>
+    </article>
+  </main>
+</BaseLayout>

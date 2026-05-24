@@ -1,0 +1,93 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const posts = (await getCollection("news")).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+
+const latestPost = posts[0];
+const otherPosts = posts.slice(1);
+---
+
+<BaseLayout>
+  <main>
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">AI News / Tools / Workflows</p>
+        <h1>AIニュースを、日本語で短く実務目線に。</h1>
+        <p>
+          生成AIの新機能、AIツール、業界ニュースを追いかける人のための情報整理サイトです。
+          忙しい日でも要点だけ読める構成で更新していきます。
+        </p>
+      </div>
+      <aside class="hero-panel" aria-label="Site focus">
+        <span>Focus</span>
+        <strong>生成AIの最新動向</strong>
+        <strong>AIツール比較</strong>
+        <strong>副業・業務効率化</strong>
+      </aside>
+    </section>
+
+    {
+      latestPost && (
+        <section class="featured-section">
+          <div class="section-heading">
+            <p class="eyebrow">Latest</p>
+            <h2>最新記事</h2>
+          </div>
+          <a class="featured-card" href={`/news/${latestPost.id}/`}>
+            <div>
+              <time datetime={latestPost.data.pubDate.toISOString()}>
+                {latestPost.data.pubDate.toLocaleDateString("ja-JP")}
+              </time>
+              <h3>{latestPost.data.title}</h3>
+              <p>{latestPost.data.description}</p>
+            </div>
+            <span>読む</span>
+          </a>
+        </section>
+      )
+    }
+
+    <section class="content-grid">
+      <div>
+        <div class="section-heading">
+          <p class="eyebrow">Articles</p>
+          <h2>記事一覧</h2>
+        </div>
+        <div class="article-list">
+          {otherPosts.map((post) => (
+            <article class="article-card">
+              <div class="article-meta">
+                <time datetime={post.data.pubDate.toISOString()}>
+                  {post.data.pubDate.toLocaleDateString("ja-JP")}
+                </time>
+                <span>{post.data.sourceName}</span>
+              </div>
+              <h3><a href={`/news/${post.id}/`}>{post.data.title}</a></h3>
+              <p>{post.data.description}</p>
+              <div class="tag-row">
+                {post.data.tags.map((tag) => <span>{tag}</span>)}
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+
+      <aside class="sidebar">
+        <section>
+          <h2>カテゴリ</h2>
+          <a href="/">生成AI</a>
+          <a href="/">AIツール</a>
+          <a href="/">ニュース解説</a>
+          <a href="/">副業活用</a>
+        </section>
+        <section>
+          <h2>収益化メモ</h2>
+          <p>記事が10〜20本になったら、独自ドメイン設定後にGoogleアドセンス申請へ進みます。</p>
+        </section>
+      </aside>
+    </section>
+  </main>
+</BaseLayout>

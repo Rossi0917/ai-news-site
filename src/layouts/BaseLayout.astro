@@ -1,0 +1,37 @@
+---
+const {
+  title = "AI News Compass",
+  description = "AIニュースとAIツール情報を日本語でわかりやすく整理するメディア"
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content={description} />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{title}</title>
+    <link rel="stylesheet" href="/src/styles/global.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="/" aria-label="AI News Compass home">
+        <span class="brand-mark">AI</span>
+        <span>AI News Compass</span>
+      </a>
+      <nav class="site-nav" aria-label="Main navigation">
+        <a href="/">ホーム</a>
+        <a href="/about/">運営情報</a>
+        <a href="/privacy/">プライバシー</a>
+        <a href="/contact/">お問い合わせ</a>
+      </nav>
+    </header>
+    <slot />
+    <footer class="site-footer">
+      <p>&copy; {new Date().getFullYear()} AI News Compass</p>
+      <p>AIニュースとAIツール情報を、毎日の判断に使いやすく。</p>
+    </footer>
+  </body>
+</html>
