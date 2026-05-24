@@ -12,27 +12,122 @@ export async function getStaticPaths() {
 
 const { post } = Astro.props;
 const { Content } = await render(post);
+
+const basePath = import.meta.env.BASE_URL.endsWith("/")
+  ? import.meta.env.BASE_URL
+  : `${import.meta.env.BASE_URL}/`;
+const withBase = (path: string) => `${basePath}${path.replace(/^\//, "")}`;
+
+const allPosts = (await getCollection("news")).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+const relatedPosts = allPosts.filter((p) => p.id !== post.id).slice(0, 3);
+
+const catColors: Record<string, string> = {
+  "AIニュース": "#6366f1",
+  "ChatGPT": "#10a37f",
+  "OpenAI": "#10a37f",
+  "Claude": "#d97757",
+  "Anthropic": "#d97757",
+  "Google": "#4285f4",
+  "Meta": "#0668e1",
+  "Microsoft": "#00a4ef",
+  "画像生成": "#ec4899",
+  "AI開発": "#8b5cf6",
+  "研究": "#06b6d4",
+  "医療データ": "#14b8a6",
+  "資金調達": "#f97316",
+  "AI業界": "#6366f1",
+  "人事": "#22c55e",
+  "レイオフ": "#ef4444",
+  "数学": "#8b5cf6",
+  "プライバシー": "#f59e0b"
+};
+
+function getCatColor(tag: string): string {
+  return catColors[tag] || "#8a7a6a";
+}
 ---
 
 <BaseLayout title={`${post.data.title} | AIニュースコンパス`} description={post.data.description}>
   <main class="article-page">
-    <article class="article-body">
-      <div class="article-meta">
-        <time datetime={post.data.pubDate.toISOString()}>
-          {post.data.pubDate.toLocaleDateString("ja-JP")}
-        </time>
-        <span>{post.data.sourceName}</span>
-      </div>
-      <h1>{post.data.title}</h1>
-      <p class="lead">{post.data.description}</p>
-      <div class="tag-row">
-        {post.data.tags.map((tag) => <span>{tag}</span>)}
-      </div>
-      <Content />
-      <div class="source-box">
-        <span>参照元</span>
-        <a href={post.data.sourceUrl} target="_blank" rel="noreferrer">{post.data.sourceName}</a>
-      </div>
-    </article>
+    <div class="article-page-grid">
+      <article class="article-body">
+        <div class="breadcrumb">
+          <a href={withBase("/")}>ホーム</a>
+          <span style="margin: 0 8px;">/</span>
+          <span>記事</span>
+        </div>
+
+        <div class="meta" style="margin-bottom: 10px;">
+          <time datetime={post.data.pubDate.toISOString()}>
+            {post.data.pubDate.toLocaleDateString("ja-JP")}
+          </time>
+          <span style="margin-left: 14px;">{post.data.sourceName}</span>
+        </div>
+
+        <h1>{post.data.title}</h1>
+
+        <div class="tag-row" style="margin-bottom: 16px;">
+          {post.data.tags.map((tag) => {
+            const color = getCatColor(tag);
+            return (
+              <span class="cat-badge" style={`color: ${color}; background: ${color}11;`}>
+                <span class="cat-badge-dot" style={`background: ${color};`}></span>
+                {tag}
+              </span>
+            );
+          })}
+        </div>
+
+        <p class="lead drop-cap">{post.data.description}</p>
+        <Content />
+
+        <div class="source-box">
+          <span>参照元</span>
+          <a href={post.data.sourceUrl} target="_blank" rel="noreferrer">{post.data.sourceName}</a>
+        </div>
+
+        <div class="ornament" style="margin: 20px 0;">
+          <span class="ornament-text">***</span>
+        </div>
+
+        <div>
+          <div class="section-heading">
+            <p class="eyebrow">RELATED</p>
+            <h2>関連記事</h2>
+          </div>
+          <div class="related-grid">
+            {relatedPosts.map((rp) => (
+              <a class="related-card" href={withBase(`/news/${rp.id}/`)} style="text-decoration:none;">
+                <h3>{rp.data.title}</h3>
+                <div class="meta">{rp.data.pubDate.toLocaleDateString("ja-JP")}</div>
+                <span class="cat-badge" style={`font-size:0.58rem; color: ${getCatColor(rp.data.tags[0])}; background: ${getCatColor(rp.data.tags[0])}11;`}>
+                  <span class="cat-badge-dot" style={`background: ${getCatColor(rp.data.tags[0])};`}></span>
+                  {rp.data.tags[0]}
+                </span>
+              </a>
+            ))}
+          </div>
+        </div>
+      </article>
+
+      <aside class="sidebar">
+        <div class="sidebar-box">
+          <h3 class="sidebar-title">サイト情報</h3>
+          <a href={withBase("/")}>トップページ</a>
+          <a href={withBase("/about/")}>運営情報</a>
+          <a href={withBase("/privacy/")}>プライバシーポリシー</a>
+          <a href={withBase("/contact/")}>お問い合わせ</a>
+        </div>
+        <div class="sidebar-box">
+          <h3 class="sidebar-title">カテゴリ</h3>
+          <a href={withBase("/")}>生成AI</a>
+          <a href={withBase("/")}>AIツール</a>
+          <a href={withBase("/")}>ニュース解説</a>
+          <a href={withBase("/")}>副業活用</a>
+        </div>
+      </aside>
+    </div>
   </main>
 </BaseLayout>

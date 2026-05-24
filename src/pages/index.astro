@@ -12,86 +12,200 @@ const basePath = import.meta.env.BASE_URL.endsWith("/")
   ? import.meta.env.BASE_URL
   : `${import.meta.env.BASE_URL}/`;
 const withBase = (path: string) => `${basePath}${path.replace(/^\//, "")}`;
+
+const catColors: Record<string, string> = {
+  "AIニュース": "#6366f1",
+  "ChatGPT": "#10a37f",
+  "OpenAI": "#10a37f",
+  "Claude": "#d97757",
+  "Anthropic": "#d97757",
+  "Google": "#4285f4",
+  "Meta": "#0668e1",
+  "Microsoft": "#00a4ef",
+  "画像生成": "#ec4899",
+  "安全性": "#f59e0b",
+  "AI開発": "#8b5cf6",
+  "研究": "#06b6d4",
+  "医療データ": "#14b8a6",
+  "資金調達": "#f97316",
+  "AI業界": "#6366f1",
+  "人事": "#22c55e",
+  "レイオフ": "#ef4444",
+  "数学": "#8b5cf6",
+  "プライバシー": "#f59e0b"
+};
+
+const topicIcons: Record<string, { icon: string; color: string }> = {
+  "Anthropic": { icon: "A", color: "#d97757" },
+  "OpenAI": { icon: "O", color: "#10a37f" },
+  "ChatGPT": { icon: "C", color: "#10a37f" },
+  "Claude": { icon: "C", color: "#d97757" },
+  "Google": { icon: "G", color: "#4285f4" },
+  "Meta": { icon: "M", color: "#0668e1" },
+  "Microsoft": { icon: "M", color: "#00a4ef" }
+};
+
+function getCatColor(tag: string): string {
+  return catColors[tag] || "#8a7a6a";
+}
+
+function getTopicIcon(tags: string[]) {
+  for (const tag of tags) {
+    for (const [key, val] of Object.entries(topicIcons)) {
+      if (tag.includes(key)) return val;
+    }
+  }
+  return { icon: "AI", color: "#8a7a6a" };
+}
 ---
 
 <BaseLayout>
   <main>
-    <section class="hero">
-      <div class="hero-copy">
-        <p class="eyebrow">AI News / Tools / Workflows</p>
-        <h1>AIニュースを、日本語で短く実務目線に。</h1>
-        <p>
-          生成AIの新機能、AIツール、業界ニュースを追いかける人のための情報整理サイトです。
-          忙しい日でも要点だけ読める構成で更新していきます。
-        </p>
+    <div class="ticker">
+      <div class="ticker-label">注目</div>
+      <div class="ticker-items">
+        {posts.slice(0, 4).map((post, i) => (
+          <>
+            {i > 0 && <span class="ticker-sep">|</span>}
+            <span>{post.data.title.length > 25 ? `${post.data.title.slice(0, 25)}...` : post.data.title}</span>
+          </>
+        ))}
       </div>
-      <aside class="hero-panel" aria-label="Site focus">
-        <span>Focus</span>
-        <strong>生成AIの最新動向</strong>
-        <strong>AIツール比較</strong>
-        <strong>副業・業務効率化</strong>
-      </aside>
-    </section>
+    </div>
 
-    {
-      latestPost && (
-        <section class="featured-section">
-          <div class="section-heading">
-            <p class="eyebrow">Latest</p>
-            <h2>最新記事</h2>
+    {latestPost && (
+      <section class="hero">
+        <div>
+          <p class="eyebrow">最新記事 / HEADLINE</p>
+          <h1 class="hero-title">{latestPost.data.title}</h1>
+          <p class="hero-desc drop-cap">{latestPost.data.description}</p>
+          <div class="hero-meta">
+            <time datetime={latestPost.data.pubDate.toISOString()}>
+              {latestPost.data.pubDate.toLocaleDateString("ja-JP")}
+            </time> / {latestPost.data.sourceName}
           </div>
-          <a class="featured-card" href={withBase(`/news/${latestPost.id}/`)}>
-            <div>
-              <time datetime={latestPost.data.pubDate.toISOString()}>
-                {latestPost.data.pubDate.toLocaleDateString("ja-JP")}
-              </time>
-              <h3>{latestPost.data.title}</h3>
-              <p>{latestPost.data.description}</p>
-            </div>
-            <span>読む</span>
-          </a>
-        </section>
-      )
-    }
+          <div class="tag-row" style="margin-top: 8px;">
+            {latestPost.data.tags.map((tag) => {
+              const color = getCatColor(tag);
+              return (
+                <span class="cat-badge" style={`color: ${color}; background: ${color}11;`}>
+                  <span class="cat-badge-dot" style={`background: ${color};`}></span>
+                  {tag}
+                </span>
+              );
+            })}
+          </div>
+          <a class="hero-cta" href={withBase(`/news/${latestPost.id}/`)}>続きを読む</a>
+        </div>
+        <div class="hero-side">
+          {otherPosts.slice(0, 4).map((post) => {
+            const topic = getTopicIcon(post.data.tags);
+            return (
+              <a class="hero-side-item" href={withBase(`/news/${post.id}/`)} style="text-decoration:none;">
+                <div class="topic-thumb" style={`background: linear-gradient(135deg, ${topic.color}22, ${topic.color}0a);`}>
+                  <span style={`color: ${topic.color};`}>{topic.icon}</span>
+                </div>
+                <div style="flex:1;">
+                  <h3>{post.data.title}</h3>
+                  <div class="meta">{post.data.pubDate.toLocaleDateString("ja-JP")}</div>
+                  <span class="cat-badge" style={`font-size:0.58rem; color: ${getCatColor(post.data.tags[0])}; background: ${getCatColor(post.data.tags[0])}11;`}>
+                    <span class="cat-badge-dot" style={`background: ${getCatColor(post.data.tags[0])};`}></span>
+                    {post.data.tags[0]}
+                  </span>
+                </div>
+              </a>
+            );
+          })}
+        </div>
+      </section>
+    )}
 
-    <section class="content-grid">
+    <div class="pr-banner">
       <div>
-        <div class="section-heading">
-          <p class="eyebrow">Articles</p>
-          <h2>記事一覧</h2>
-        </div>
-        <div class="article-list">
-          {otherPosts.map((post) => (
-            <article class="article-card">
-              <div class="article-meta">
-                <time datetime={post.data.pubDate.toISOString()}>
-                  {post.data.pubDate.toLocaleDateString("ja-JP")}
-                </time>
-                <span>{post.data.sourceName}</span>
-              </div>
-              <h3><a href={withBase(`/news/${post.id}/`)}>{post.data.title}</a></h3>
-              <p>{post.data.description}</p>
-              <div class="tag-row">
-                {post.data.tags.map((tag) => <span>{tag}</span>)}
-              </div>
-            </article>
-          ))}
-        </div>
+        <div class="pr-label">Info</div>
+        <span class="pr-banner-text">AIニュースコンパスでは、生成AIのニュースを実務目線で短く整理してお届けします。</span>
+      </div>
+      <a class="pr-cta" href={withBase("/about/")}>運営方針を見る</a>
+    </div>
+
+    <div class="ornament">
+      <span class="ornament-text">***</span>
+    </div>
+
+    <section>
+      <div class="section-heading">
+        <p class="eyebrow">ARTICLES</p>
+        <h2>記事一覧</h2>
       </div>
 
-      <aside class="sidebar">
-        <section>
-          <h2>カテゴリ</h2>
-          <a href={withBase("/")}>生成AI</a>
-          <a href={withBase("/")}>AIツール</a>
-          <a href={withBase("/")}>ニュース解説</a>
-          <a href={withBase("/")}>副業活用</a>
-        </section>
-        <section>
-          <h2>収益化メモ</h2>
-          <p>記事が10〜20本になったら、独自ドメイン設定後にGoogleアドセンス申請へ進みます。</p>
-        </section>
-      </aside>
+      <div class="content-grid">
+        <div>
+          {otherPosts.slice(0, 3).map((post) => {
+            const topic = getTopicIcon(post.data.tags);
+            return (
+              <article class="article-card">
+                <div class="article-card-with-thumb">
+                  <div class="topic-thumb" style={`background: linear-gradient(135deg, ${topic.color}22, ${topic.color}0a);`}>
+                    <span style={`color: ${topic.color};`}>{topic.icon}</span>
+                  </div>
+                  <div>
+                    <h3><a href={withBase(`/news/${post.id}/`)}>{post.data.title}</a></h3>
+                    <p>{post.data.description}</p>
+                    <div class="meta">{post.data.pubDate.toLocaleDateString("ja-JP")} / {post.data.sourceName}</div>
+                    <div class="tag-row">
+                      {post.data.tags.slice(0, 2).map((tag) => {
+                        const color = getCatColor(tag);
+                        return (
+                          <span class="cat-badge" style={`font-size:0.58rem; color: ${color}; background: ${color}11;`}>
+                            <span class="cat-badge-dot" style={`background: ${color};`}></span>
+                            {tag}
+                          </span>
+                        );
+                      })}
+                    </div>
+                  </div>
+                </div>
+              </article>
+            );
+          })}
+        </div>
+
+        <div>
+          {otherPosts.slice(3).map((post) => {
+            const topic = getTopicIcon(post.data.tags);
+            return (
+              <article class="article-card">
+                <div class="article-card-with-thumb">
+                  <div class="topic-thumb" style={`background: linear-gradient(135deg, ${topic.color}22, ${topic.color}0a);`}>
+                    <span style={`color: ${topic.color};`}>{topic.icon}</span>
+                  </div>
+                  <div>
+                    <h3><a href={withBase(`/news/${post.id}/`)}>{post.data.title}</a></h3>
+                    <p>{post.data.description}</p>
+                    <div class="meta">{post.data.pubDate.toLocaleDateString("ja-JP")}</div>
+                  </div>
+                </div>
+              </article>
+            );
+          })}
+        </div>
+
+        <aside class="sidebar">
+          <div class="sidebar-box">
+            <h3 class="sidebar-title">カテゴリ</h3>
+            <a href={withBase("/")}>生成AI</a>
+            <a href={withBase("/")}>AIツール</a>
+            <a href={withBase("/")}>ニュース解説</a>
+            <a href={withBase("/")}>副業活用</a>
+          </div>
+          <div class="sidebar-box">
+            <h3 class="sidebar-title">サイト情報</h3>
+            <a href={withBase("/about/")}>運営情報</a>
+            <a href={withBase("/privacy/")}>プライバシーポリシー</a>
+            <a href={withBase("/contact/")}>お問い合わせ</a>
+          </div>
+        </aside>
+      </div>
     </section>
   </main>
 </BaseLayout>

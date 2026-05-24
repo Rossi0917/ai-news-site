@@ -10,6 +10,15 @@ const basePath = import.meta.env.BASE_URL.endsWith("/")
   ? import.meta.env.BASE_URL
   : `${import.meta.env.BASE_URL}/`;
 const withBase = (path: string) => `${basePath}${path.replace(/^\//, "")}`;
+
+const today = new Date().toLocaleDateString("ja-JP", {
+  year: "numeric",
+  month: "long",
+  day: "numeric",
+  weekday: "short"
+});
+
+const currentPath = Astro.url.pathname;
 ---
 
 <!doctype html>
@@ -23,18 +32,24 @@ const withBase = (path: string) => `${basePath}${path.replace(/^\//, "")}`;
   </head>
   <body>
     <header class="site-header">
-      <a class="brand" href={withBase("/")} aria-label="AIニュースコンパス home">
-        <span class="brand-mark">AI</span>
-        <span>AIニュースコンパス</span>
-      </a>
-      <nav class="site-nav" aria-label="Main navigation">
-        <a href={withBase("/")}>ホーム</a>
-        <a href={withBase("/about/")}>運営情報</a>
-        <a href={withBase("/privacy/")}>プライバシー</a>
-        <a href={withBase("/contact/")}>お問い合わせ</a>
+      <div class="header-date">{today}</div>
+      <div class="masthead">
+        <a href={withBase("/")}>AIニュースコンパス</a>
+      </div>
+      <div class="header-subtitle">AIニュースとAIツール情報を、毎日の判断に使いやすく。</div>
+      <hr class="header-rule-double" />
+      <hr class="header-rule-single" />
+      <nav class="site-nav">
+        <a href={withBase("/")} class={currentPath === basePath || currentPath === "/" ? "active" : ""}>ホーム</a>
+        <a href={withBase("/about/")} class={currentPath.includes("/about") ? "active" : ""}>運営情報</a>
+        <a href={withBase("/privacy/")} class={currentPath.includes("/privacy") ? "active" : ""}>プライバシー</a>
+        <a href={withBase("/contact/")} class={currentPath.includes("/contact") ? "active" : ""}>お問い合わせ</a>
       </nav>
+      <hr class="nav-rule" />
     </header>
+
     <slot />
+
     <footer class="site-footer">
       <p>&copy; {new Date().getFullYear()} AIニュースコンパス</p>
       <p>AIニュースとAIツール情報を、毎日の判断に使いやすく。</p>
