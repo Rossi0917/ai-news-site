@@ -1,6 +1,6 @@
 ---
 const {
-  title = "AI News Compass",
+  title = "AIニュースコンパス",
   description = "AIニュースとAIツール情報を日本語でわかりやすく整理するメディア"
 } = Astro.props;
 
@@ -23,9 +23,9 @@ const withBase = (path: string) => `${basePath}${path.replace(/^\//, "")}`;
   </head>
   <body>
     <header class="site-header">
-      <a class="brand" href={withBase("/")} aria-label="AI News Compass home">
+      <a class="brand" href={withBase("/")} aria-label="AIニュースコンパス home">
         <span class="brand-mark">AI</span>
-        <span>AI News Compass</span>
+        <span>AIニュースコンパス</span>
       </a>
       <nav class="site-nav" aria-label="Main navigation">
         <a href={withBase("/")}>ホーム</a>
@@ -36,7 +36,7 @@ const withBase = (path: string) => `${basePath}${path.replace(/^\//, "")}`;
     </header>
     <slot />
     <footer class="site-footer">
-      <p>&copy; {new Date().getFullYear()} AI News Compass</p>
+      <p>&copy; {new Date().getFullYear()} AIニュースコンパス</p>
       <p>AIニュースとAIツール情報を、毎日の判断に使いやすく。</p>
     </footer>
   </body>
