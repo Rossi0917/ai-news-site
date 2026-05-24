@@ -8,6 +8,7 @@ const posts = (await getCollection("news")).sort(
 
 const latestPost = posts[0];
 const otherPosts = posts.slice(1);
+const withBase = (path: string) => `${import.meta.env.BASE_URL}${path.replace(/^\//, "")}`;
 ---
 
 <BaseLayout>
@@ -36,7 +37,7 @@ const otherPosts = posts.slice(1);
             <p class="eyebrow">Latest</p>
             <h2>最新記事</h2>
           </div>
-          <a class="featured-card" href={`/news/${latestPost.id}/`}>
+          <a class="featured-card" href={withBase(`/news/${latestPost.id}/`)}>
             <div>
               <time datetime={latestPost.data.pubDate.toISOString()}>
                 {latestPost.data.pubDate.toLocaleDateString("ja-JP")}
@@ -65,7 +66,7 @@ const otherPosts = posts.slice(1);
                 </time>
                 <span>{post.data.sourceName}</span>
               </div>
-              <h3><a href={`/news/${post.id}/`}>{post.data.title}</a></h3>
+              <h3><a href={withBase(`/news/${post.id}/`)}>{post.data.title}</a></h3>
               <p>{post.data.description}</p>
               <div class="tag-row">
                 {post.data.tags.map((tag) => <span>{tag}</span>)}
@@ -78,10 +79,10 @@ const otherPosts = posts.slice(1);
       <aside class="sidebar">
         <section>
           <h2>カテゴリ</h2>
-          <a href="/">生成AI</a>
-          <a href="/">AIツール</a>
-          <a href="/">ニュース解説</a>
-          <a href="/">副業活用</a>
+          <a href={withBase("/")}>生成AI</a>
+          <a href={withBase("/")}>AIツール</a>
+          <a href={withBase("/")}>ニュース解説</a>
+          <a href={withBase("/")}>副業活用</a>
         </section>
         <section>
           <h2>収益化メモ</h2>
