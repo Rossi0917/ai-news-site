@@ -3,7 +3,7 @@ import sitemap from "@astrojs/sitemap";
 
 export default defineConfig({
   site: "https://rossi0917.github.io",
-  base: "/ai-news-site",
+  base: "/ai-news-site/",
   integrations: [sitemap()],
   markdown: {
     shikiConfig: {
