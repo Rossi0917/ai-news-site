@@ -2,8 +2,8 @@ import { defineConfig } from "astro/config";
 import sitemap from "@astrojs/sitemap";
 
 export default defineConfig({
-  site: "https://rossi0917.github.io",
-  base: "/ai-news-site/",
+  site: "https://ai-news-compass.com",
+  base: "/",
   integrations: [sitemap()],
   markdown: {
     shikiConfig: {
