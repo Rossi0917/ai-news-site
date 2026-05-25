@@ -812,6 +812,21 @@ a { color: inherit; }
   font-family: "Noto Sans JP", sans-serif;
 }
 
+.contact-button {
+  display: inline-block;
+  padding: 10px 28px;
+  background: var(--ink);
+  color: var(--paper);
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-decoration: none;
+  font-family: "Noto Sans JP", sans-serif;
+}
+
+.contact-button:hover {
+  background: var(--accent);
+}
+
 /* ── Footer ── */
 .site-footer {
   display: flex;
