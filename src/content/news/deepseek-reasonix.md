@@ -2,6 +2,7 @@
 title: "DeepSeekが推論機能搭載コーディングAI「reasonix」発表"
 description: "DeepSeekが推論機能付きコーディングエージェント「reasonix」を発表。高度なキャッシング機能と低コストを両立し、個人開発者にも使いやすいと注目されている。"
 pubDate: 2026-05-25
+pubTime: 21:22
 sourceName: "Hacker News"
 sourceUrl: "https://esengine.github.io/DeepSeek-Reasonix/"
 tags: ["DeepSeek", "AIツール", "プログラミング", "AI業界"]

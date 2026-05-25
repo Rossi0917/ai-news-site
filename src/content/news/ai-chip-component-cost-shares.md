@@ -2,6 +2,7 @@
 title: "AIチップのコスト、実は6割以上がメモリ代だった"
 description: "AI用チップの部品コストのうち、メモリが約60〜65%を占めることが明らかに。メモリ需要の急増がAIサービス料金や導入コストに直結しており、AI民主化の大きな壁となっている。"
 pubDate: 2026-05-25
+pubTime: 21:22
 sourceName: "Hacker News"
 sourceUrl: "https://epoch.ai/data-insights/ai-chip-component-cost-shares"
 tags: ["AIニュース", "ハードウェア", "AI業界", "生成AI"]
