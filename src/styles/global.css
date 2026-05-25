@@ -536,6 +536,13 @@ a { color: inherit; }
   text-decoration: none;
 }
 
+.sidebar-box a.tool-cta {
+  display: inline-block;
+  padding: 3px 12px;
+  color: var(--paper);
+  border-bottom: none;
+}
+
 /* ── Book Card (sidebar) ── */
 .book-item {
   padding: 8px 0;

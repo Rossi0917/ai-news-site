@@ -22,6 +22,7 @@ const allPosts = (await getCollection("news")).sort(
   (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
 );
 const relatedPosts = allPosts.filter((p) => p.id !== post.id).slice(0, 3);
+const valueAiWriterUrl = "https://px.a8.net/svt/ejp?a8mat=4B3YV8+DGMV76+1JUK+1HLFVM";
 
 const catColors: Record<string, string> = {
   "AIニュース": "#6366f1",
@@ -126,6 +127,24 @@ function getCatColor(tag: string): string {
           <a href={withBase("/")}>AIツール</a>
           <a href={withBase("/")}>ニュース解説</a>
           <a href={withBase("/")}>副業活用</a>
+        </div>
+        <div class="sidebar-box">
+          <h3 class="sidebar-title">関連サービス</h3>
+          <div class="tool-item">
+            <div class="tool-item-head">
+              <span class="tool-name">Value AI Writer</span>
+              <span class="tool-tag">PR</span>
+            </div>
+            <p class="tool-desc">SEO記事作成を効率化したい方向けのAIライティングツールです。</p>
+            <a
+              class="tool-cta"
+              href={valueAiWriterUrl}
+              target="_blank"
+              rel="nofollow sponsored noopener noreferrer"
+            >
+              公式サイトを見る
+            </a>
+          </div>
         </div>
       </aside>
     </div>
