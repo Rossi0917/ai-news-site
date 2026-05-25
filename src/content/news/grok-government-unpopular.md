@@ -2,6 +2,7 @@
 title: "GrokはElon押しでも不人気？政府職員もXのAIチャットボットを敬遠"
 description: "イーロン・マスク氏がXに統合したAIチャットボット「Grok」が、政府職員からも嫌われているという調査データが話題に。強引なAI普及戦略の限界を解説します。"
 pubDate: 2026-05-25
+pubTime: 18:00
 sourceName: "The Verge"
 sourceUrl: "https://www.theverge.com/ai-artificial-intelligence/936219/elon-stop-trying-to-make-grok-happen"
 tags: ["AIニュース", "Grok", "xAI", "イーロン・マスク", "X（旧Twitter）"]

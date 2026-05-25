@@ -18,8 +18,25 @@ const basePath = import.meta.env.BASE_URL.endsWith("/")
   : `${import.meta.env.BASE_URL}/`;
 const withBase = (path: string) => `${basePath}${path.replace(/^\//, "")}`;
 
+function getPostTimestamp(post: any) {
+  const date = new Date(post.data.pubDate);
+  const [hours = 0, minutes = 0] = (post.data.pubTime ?? "00:00").split(":").map(Number);
+  date.setHours(hours, minutes, 0, 0);
+  return date.valueOf();
+}
+
+function formatPostDate(post: any) {
+  const date = post.data.pubDate.toLocaleDateString("ja-JP");
+  return post.data.pubTime ? `${date} ${post.data.pubTime}` : date;
+}
+
+function getPostDateTime(post: any) {
+  const date = post.data.pubDate.toISOString().slice(0, 10);
+  return post.data.pubTime ? `${date}T${post.data.pubTime}:00+09:00` : post.data.pubDate.toISOString();
+}
+
 const allPosts = (await getCollection("news")).sort(
-  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+  (a, b) => getPostTimestamp(b) - getPostTimestamp(a)
 );
 const relatedPosts = allPosts.filter((p) => p.id !== post.id).slice(0, 3);
 const valueAiWriterUrl = "https://px.a8.net/svt/ejp?a8mat=4B3YV8+DGMV76+1JUK+1HLFVM";
@@ -61,8 +78,8 @@ function getCatColor(tag: string): string {
         </div>
 
         <div class="meta" style="margin-bottom: 10px;">
-          <time datetime={post.data.pubDate.toISOString()}>
-            {post.data.pubDate.toLocaleDateString("ja-JP")}
+          <time datetime={getPostDateTime(post)}>
+            {formatPostDate(post)}
           </time>
           <span style="margin-left: 14px;">{post.data.sourceName}</span>
         </div>
@@ -102,7 +119,7 @@ function getCatColor(tag: string): string {
             {relatedPosts.map((rp) => (
               <a class="related-card" href={withBase(`/news/${rp.id}/`)} style="text-decoration:none;">
                 <h3>{rp.data.title}</h3>
-                <div class="meta">{rp.data.pubDate.toLocaleDateString("ja-JP")}</div>
+                <div class="meta">{formatPostDate(rp)}</div>
                 <span class="cat-badge" style={`font-size:0.58rem; color: ${getCatColor(rp.data.tags[0])}; background: ${getCatColor(rp.data.tags[0])}11;`}>
                   <span class="cat-badge-dot" style={`background: ${getCatColor(rp.data.tags[0])};`}></span>
                   {rp.data.tags[0]}

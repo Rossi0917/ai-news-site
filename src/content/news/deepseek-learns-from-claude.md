@@ -2,6 +2,7 @@
 title: "DeepSeekはClaudeから学んでいる？AI競争の舞台裏に迫る"
 description: "中国発のAIモデルDeepSeekが、AnthropicのClaudeを参照して開発された可能性がRedditで話題に。AI業界の「知識の連鎖」と競争構造を解説します。"
 pubDate: 2026-05-25
+pubTime: 17:30
 sourceName: "Reddit / r/Anthropic"
 sourceUrl: "https://i.redd.it/gwthafmnc13h1.png"
 tags: ["AIニュース", "DeepSeek", "Anthropic", "Claude", "AI競争"]

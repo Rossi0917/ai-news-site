@@ -2,6 +2,7 @@
 title: "OpenAI共同創業者アンドレイ・カルパシー氏、AnthropicへAI改善のために参加"
 description: "AIの世界的権威であるアンドレイ・カルパシー氏がAnthropicに参加し、Claudeの改善に携わると報じられました。AI業界に与える影響を解説します。"
 pubDate: 2026-05-24
+pubTime: 15:30
 sourceName: "Axios"
 sourceUrl: "https://www.axios.com/2026/05/19/anthropic-openai-karpathy-andrej-claude"
 tags: ["AIニュース", "Anthropic", "Claude", "人事"]

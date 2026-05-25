@@ -2,6 +2,7 @@
 title: "トラックドライバーもAIを使う時代？ChatGPTが広がる「意外な現場」"
 description: "ChatGPTのコミュニティに、トラックドライバーを名乗るユーザーからの投稿が相次いでいます。ホワイトカラーだけでなく、現場職にもAI活用が広がりつつある実態を紹介します。"
 pubDate: 2026-05-25
+pubTime: 16:30
 sourceName: "Reddit / r/ChatGPT"
 sourceUrl: "https://i.redd.it/93e7ooa0u63h1.jpeg"
 tags: ["AIニュース", "ChatGPT", "AI活用", "働き方", "現場職"]

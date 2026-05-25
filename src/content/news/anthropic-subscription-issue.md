@@ -2,6 +2,7 @@
 title: "解約したのに課金が続く？Anthropicのサブスク問題がユーザー間で話題"
 description: "Anthropicのサブスクリプションを解約手続きしたにもかかわらず、継続課金されたというユーザーの報告がRedditで注目を集めています。AIサービスの契約管理に潜む落とし穴を解説します。"
 pubDate: 2026-05-25
+pubTime: 16:00
 sourceName: "Reddit / r/Anthropic"
 sourceUrl: "https://www.reddit.com/r/Anthropic/comments/1tlggvh/cancelled_my_annual_sub_so_it_doesnt_renew/"
 tags: ["AIニュース", "Anthropic", "Claude", "サブスクリプション", "消費者問題"]

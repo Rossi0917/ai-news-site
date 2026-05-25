@@ -8,6 +8,7 @@ const news = defineCollection({
     title: z.string(),
     description: z.string(),
     pubDate: z.coerce.date(),
+    pubTime: z.string().regex(/^\d{2}:\d{2}$/).optional(),
     updatedDate: z.coerce.date().optional(),
     sourceName: z.string(),
     sourceUrl: z.string().url(),

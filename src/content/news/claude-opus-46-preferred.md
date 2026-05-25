@@ -2,6 +2,7 @@
 title: "Opus 4.7より4.6の方が優れている？ユーザーが語るClaudeモデル比較"
 description: "AnthropicがOpus 4.7をリリースした後も、旧モデルOpus 4.6を好むユーザーが続出。RedditのClaudeコミュニティで話題になった「モデル比較論争」を解説します。"
 pubDate: 2026-05-25
+pubTime: 17:00
 sourceName: "Reddit / r/Claude"
 sourceUrl: "https://www.reddit.com/r/claude/comments/1tlf9dn/anyone_still_using_opus_46/"
 tags: ["AIニュース", "Anthropic", "Claude", "Opus", "モデル比較"]

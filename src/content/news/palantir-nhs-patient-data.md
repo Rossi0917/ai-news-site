@@ -2,6 +2,7 @@
 title: "アムネスティが警告：米企業PalantirがイギリスNHSの患者データに無制限アクセス"
 description: "国際人権団体アムネスティ・インターナショナルが、米IT企業PalantirなどがイギリスNHS（国民保健サービス）の患者データに無制限のアクセスを許可されていると報告しました。"
 pubDate: 2026-05-24
+pubTime: 13:30
 sourceName: "The Guardian / Amnesty International UK"
 sourceUrl: "https://www.theguardian.com/society/2026/may/11/palantir-access-nhs-england-patient-data"
 tags: ["AIニュース", "プライバシー", "医療データ", "Palantir", "AI倫理"]

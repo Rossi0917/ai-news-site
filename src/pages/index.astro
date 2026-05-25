@@ -2,8 +2,25 @@
 import { getCollection } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
 
+function getPostTimestamp(post: any) {
+  const date = new Date(post.data.pubDate);
+  const [hours = 0, minutes = 0] = (post.data.pubTime ?? "00:00").split(":").map(Number);
+  date.setHours(hours, minutes, 0, 0);
+  return date.valueOf();
+}
+
+function formatPostDate(post: any) {
+  const date = post.data.pubDate.toLocaleDateString("ja-JP");
+  return post.data.pubTime ? `${date} ${post.data.pubTime}` : date;
+}
+
+function getPostDateTime(post: any) {
+  const date = post.data.pubDate.toISOString().slice(0, 10);
+  return post.data.pubTime ? `${date}T${post.data.pubTime}:00+09:00` : post.data.pubDate.toISOString();
+}
+
 const posts = (await getCollection("news")).sort(
-  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+  (a, b) => getPostTimestamp(b) - getPostTimestamp(a)
 );
 
 const latestPost = posts[0];
@@ -80,8 +97,8 @@ function getTopicIcon(tags: string[]) {
           <h1 class="hero-title">{latestPost.data.title}</h1>
           <p class="hero-desc drop-cap">{latestPost.data.description}</p>
           <div class="hero-meta">
-            <time datetime={latestPost.data.pubDate.toISOString()}>
-              {latestPost.data.pubDate.toLocaleDateString("ja-JP")}
+            <time datetime={getPostDateTime(latestPost)}>
+              {formatPostDate(latestPost)}
             </time> / {latestPost.data.sourceName}
           </div>
           <div class="tag-row" style="margin-top: 8px;">
@@ -107,7 +124,7 @@ function getTopicIcon(tags: string[]) {
                 </div>
                 <div style="flex:1;">
                   <h3>{post.data.title}</h3>
-                  <div class="meta">{post.data.pubDate.toLocaleDateString("ja-JP")}</div>
+                  <div class="meta">{formatPostDate(post)}</div>
                   <span class="cat-badge" style={`font-size:0.58rem; color: ${getCatColor(post.data.tags[0])}; background: ${getCatColor(post.data.tags[0])}11;`}>
                     <span class="cat-badge-dot" style={`background: ${getCatColor(post.data.tags[0])};`}></span>
                     {post.data.tags[0]}
@@ -119,14 +136,6 @@ function getTopicIcon(tags: string[]) {
         </div>
       </section>
     )}
-
-    <figure class="editorial-visual">
-      <img
-        src={withBase("/images/editorial-ai-newsroom.jpg")}
-        alt="AIニュースを整理する編集室のイメージ"
-        loading="eager"
-      />
-    </figure>
 
     <div class="pr-banner">
       <div>
@@ -159,7 +168,7 @@ function getTopicIcon(tags: string[]) {
                   <div>
                     <h3><a href={withBase(`/news/${post.id}/`)}>{post.data.title}</a></h3>
                     <p>{post.data.description}</p>
-                    <div class="meta">{post.data.pubDate.toLocaleDateString("ja-JP")} / {post.data.sourceName}</div>
+                    <div class="meta">{formatPostDate(post)} / {post.data.sourceName}</div>
                     <div class="tag-row">
                       {post.data.tags.slice(0, 2).map((tag) => {
                         const color = getCatColor(tag);
@@ -190,7 +199,7 @@ function getTopicIcon(tags: string[]) {
                   <div>
                     <h3><a href={withBase(`/news/${post.id}/`)}>{post.data.title}</a></h3>
                     <p>{post.data.description}</p>
-                    <div class="meta">{post.data.pubDate.toLocaleDateString("ja-JP")}</div>
+                    <div class="meta">{formatPostDate(post)}</div>
                   </div>
                 </div>
               </article>

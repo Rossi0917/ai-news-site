@@ -32,11 +32,13 @@ const currentPath = Astro.url.pathname;
   </head>
   <body>
     <header class="site-header">
-      <div class="header-date">{today}</div>
-      <div class="masthead">
-        <a href={withBase("/")}>AI News Compass</a>
+      <div class="header-banner">
+        <div class="header-date">{today}</div>
+        <div class="masthead">
+          <a href={withBase("/")}>AI News Compass</a>
+        </div>
+        <div class="header-subtitle">海外AIニュースを、日本の仕事と暮らしの目線で。</div>
       </div>
-      <div class="header-subtitle">海外AIニュースを、日本の仕事と暮らしの目線で。</div>
       <hr class="header-rule-double" />
       <hr class="header-rule-single" />
       <nav class="site-nav">

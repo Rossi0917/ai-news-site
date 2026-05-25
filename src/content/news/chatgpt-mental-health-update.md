@@ -2,6 +2,7 @@
 title: "ChatGPTは悩み相談にどこまで答えるべきか——OpenAIが応答制限の見直しを予告"
 description: "OpenAIのSam Altman氏が、ChatGPTのメンタルヘルス関連の応答制限を見直す方針を示しました。便利さと安全性の間で、私たちはAIとの付き合い方をどう考えればいいのでしょうか。"
 pubDate: 2026-05-24
+pubTime: 18:00
 sourceName: "Reddit r/ChatGPT (Sam Altman投稿)"
 sourceUrl: "https://www.reddit.com/r/ChatGPT/comments/1o6jins/updates_for_chatgpt/"
 tags: ["AIニュース", "ChatGPT", "OpenAI", "メンタルヘルス", "アップデート"]

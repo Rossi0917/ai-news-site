@@ -2,6 +2,7 @@
 title: "ローカルLLM×Claude Codeで完全オフライン開発——実践セットアップ手順まとめ"
 description: "OllamaとClaude Codeを組み合わせてオフライン環境でAI支援コーディングを行う方法が話題になっています。実際のフライト中でも動作した手順を紹介します。"
 pubDate: 2026-05-24
+pubTime: 16:30
 sourceName: "Reddit r/ClaudeCode"
 sourceUrl: "https://www.reddit.com/r/ClaudeCode/comments/1tkja8d/my_experience_using_claude_code_with_local_llm/"
 tags: ["AIニュース", "Claude Code", "ローカルLLM", "Ollama", "AI開発"]

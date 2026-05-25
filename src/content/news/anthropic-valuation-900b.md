@@ -2,6 +2,7 @@
 title: "Anthropicが企業評価額9,000億ドル規模の資金調達へ——Q2収益は109億ドル予測"
 description: "AI企業Anthropicが約9,000億ドルの企業評価額で新たな資金調達を検討中と報じられました。Q2収益予測109億ドルという数字と合わせて、その背景を解説します。"
 pubDate: 2026-05-24
+pubTime: 17:00
 sourceName: "International Business Times UK"
 sourceUrl: "https://www.ibtimes.co.uk/anthropics-900b-valuation-bid-makes-more-sense-now-q2-revenue-expected-reach-109b-1798059"
 tags: ["AIニュース", "Anthropic", "資金調達", "AI業界"]
