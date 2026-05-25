@@ -1,5 +1,5 @@
 ---
-title: "ChatGPT Images 2.0登場--AI画像生成が新フェーズへ"
+title: "ChatGPT Images 2.0登場——AI画像生成が新フェーズへ"
 description: "OpenAIがChatGPT Images 2.0を公開しました。テキスト指示から高品質な画像を生成できる機能が強化され、クリエイティブ活用の幅が広がっています。"
 pubDate: 2026-05-24
 sourceName: "OpenAI"
