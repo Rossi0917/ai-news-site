@@ -1,5 +1,5 @@
 /* ========================================
-   AIニュースコンパス — 新聞エディトリアルスタイル
+   AI News Compass — 新聞エディトリアルスタイル
    ======================================== */
 
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;600;700;800;900&family=Noto+Serif+JP:wght@400;700;900&display=swap');
@@ -50,12 +50,13 @@ a { color: inherit; }
 }
 
 .masthead {
-  font-size: 2.2rem;
+  font-size: 2.35rem;
   font-weight: 900;
-  letter-spacing: .15em;
+  letter-spacing: .04em;
   margin: 8px 0 6px;
   color: var(--ink);
   line-height: 1.2;
+  font-family: Georgia, "Times New Roman", serif;
 }
 
 .masthead a {
@@ -64,10 +65,11 @@ a { color: inherit; }
 }
 
 .header-subtitle {
-  font-size: 0.75rem;
+  font-size: 0.78rem;
   color: var(--light-text);
   margin-bottom: 10px;
   font-family: "Noto Sans JP", sans-serif;
+  font-weight: 600;
 }
 
 .header-rule-double {
@@ -303,6 +305,20 @@ a { color: inherit; }
   font-size: 0.65rem;
   color: var(--muted);
   font-family: "Noto Sans JP", sans-serif;
+}
+
+.editorial-visual {
+  margin: 18px 0 18px;
+  border: 1px solid var(--line);
+  background: var(--cream);
+  overflow: hidden;
+}
+
+.editorial-visual img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 7;
+  object-fit: cover;
 }
 
 /* ── Content Grid ── */

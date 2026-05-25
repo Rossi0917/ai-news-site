@@ -1,7 +1,7 @@
 ---
 const {
-  title = "AIニュースコンパス",
-  description = "AIニュースとAIツール情報を日本語でわかりやすく整理するメディア"
+  title = "AI News Compass",
+  description = "海外AIニュースを、日本の仕事と暮らしの目線で整理するメディア"
 } = Astro.props;
 
 import "../styles/global.css";
@@ -34,9 +34,9 @@ const currentPath = Astro.url.pathname;
     <header class="site-header">
       <div class="header-date">{today}</div>
       <div class="masthead">
-        <a href={withBase("/")}>AIニュースコンパス</a>
+        <a href={withBase("/")}>AI News Compass</a>
       </div>
-      <div class="header-subtitle">AIニュースとAIツール情報を、毎日の判断に使いやすく。</div>
+      <div class="header-subtitle">海外AIニュースを、日本の仕事と暮らしの目線で。</div>
       <hr class="header-rule-double" />
       <hr class="header-rule-single" />
       <nav class="site-nav">
@@ -51,8 +51,8 @@ const currentPath = Astro.url.pathname;
     <slot />
 
     <footer class="site-footer">
-      <p>&copy; {new Date().getFullYear()} AIニュースコンパス</p>
-      <p>AIニュースとAIツール情報を、毎日の判断に使いやすく。</p>
+      <p>&copy; {new Date().getFullYear()} AI News Compass</p>
+      <p>AIの変化を、毎日の判断材料に。</p>
     </footer>
   </body>
 </html>
