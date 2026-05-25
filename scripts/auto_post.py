@@ -405,15 +405,35 @@ def generate_article(item: dict, summary: dict, client) -> str:
 
 上記の情報を使って記事を生成してください。"""
 
-    return call_claude_cached(client, SONNET_MODEL, SONNET_COPYWRITER_SYSTEM, user_content, max_tokens=2048)
+    raw = call_claude_cached(client, SONNET_MODEL, SONNET_COPYWRITER_SYSTEM, user_content, max_tokens=2048)
+    return clean_claude_output(raw)
 
 
 def quality_check(draft: str, client) -> str:
     """Claude Sonnet で品質チェック・修正を行い、完成版を返す。"""
-    return call_claude_cached(client, SONNET_MODEL, SONNET_EDITOR_SYSTEM, draft, max_tokens=2048)
+    raw = call_claude_cached(client, SONNET_MODEL, SONNET_EDITOR_SYSTEM, draft, max_tokens=2048)
+    return clean_claude_output(raw)
 
 
 # ===== MD 保存 =====
+
+def clean_claude_output(text: str) -> str:
+    """Claude出力からコードフェンスを除去してmarkdownだけを取り出す。
+    Claudeが ```yaml や ```markdown で囲んで出力することがあるため。
+    """
+    text = text.strip()
+    # 先頭の ```yaml / ```markdown / ``` を除去
+    text = re.sub(r'^```(?:yaml|markdown|md)?\s*\n', '', text)
+    # 末尾の ``` を除去
+    text = re.sub(r'\n```\s*$', '', text)
+    text = text.strip()
+    # frontmatter の --- で始まることを確認（前置きテキストがある場合は除去）
+    if not text.startswith('---'):
+        match = re.search(r'^---', text, re.MULTILINE)
+        if match:
+            text = text[match.start():]
+    return text
+
 
 def extract_frontmatter_title(markdown: str) -> str:
     """frontmatter の title フィールドを取り出す。"""

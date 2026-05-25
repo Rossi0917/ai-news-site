@@ -1,4 +1,3 @@
-```yaml
 ---
 title: "DeepSeekが推論機能搭載コーディングAI「reasonix」発表"
 description: "DeepSeekが推論機能付きコーディングエージェント「reasonix」を発表。高度なキャッシング機能と低コストを両立し、個人開発者にも使いやすいと注目されている。"
@@ -18,6 +17,5 @@ affiliate: false
 DeepSeekはこれまでも低コスト・高性能なモデルで市場を驚かせてきましたが、reasonixもその路線を踏襲しています。日本のエンジニアにどこまで浸透するか、ちょっと楽しみですね。
 
 **参照元：** [Hacker News / DeepSeek Reasonix](https://esengine.github.io/DeepSeek-Reasonix/)
-```
 
 <!-- EDITOR: descriptionが120字を超えていたため短縮。本文中の重複表現（「APIコスト（外部サービスを使う際の利用料）」の括弧説明を削除）を整理し、全体の字数を調整。その他の項目は問題なし。 -->
