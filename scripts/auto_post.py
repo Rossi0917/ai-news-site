@@ -110,6 +110,7 @@ AIの最新ニュースを副業・在宅ワーク・AI活用に関心がある�
 title: "..."
 description: "..."
 pubDate: YYYY-MM-DD
+pubTime: HH:mm
 sourceName: "..."
 sourceUrl: "..."
 tags: ["...", "..."]
@@ -127,8 +128,9 @@ SONNET_EDITOR_SYSTEM = f"""あなたはAIニュース記事のエディターで
 3. frontmatterのdescriptionが120字以内か（超えていれば削る）
 4. frontmatterのtitleが40字以内か（超えていれば簡潔に）
 5. tagsが利用可能リストのみか: {VALID_TAGS_STR}
-6. 本文が300〜500字の範囲内か（短すぎれば補足、長すぎれば削る）
-7. 末尾に参照元リンクがあるか
+6. pubTimeフィールドがあるか（なければ "09:00" を補完）
+7. 本文が300〜500字の範囲内か（短すぎれば補足、長すぎれば削る）
+8. 末尾に参照元リンクがあるか
 
 【出力形式】完成版のmarkdown（frontmatter + 本文）のみ。
 修正した場合は末尾に <!-- EDITOR: 修正内容 --> を追記。
@@ -402,8 +404,9 @@ def generate_article(item: dict, summary: dict, client) -> str:
 - 注目数字: {json.dumps(summary["numbers"], ensure_ascii=False)}
 
 【今日の日付】{today_jst()}
+【現在時刻 (JST)】{current_time_jst()}
 
-上記の情報を使って記事を生成してください。"""
+上記の情報を使って記事を生成してください。pubTime には現在時刻をそのまま使用してください。"""
 
     raw = call_claude_cached(client, SONNET_MODEL, SONNET_COPYWRITER_SYSTEM, user_content, max_tokens=2048)
     return clean_claude_output(raw)

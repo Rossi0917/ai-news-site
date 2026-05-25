@@ -13,6 +13,7 @@ const news = defineCollection({
     sourceName: z.string(),
     sourceUrl: z.string().url(),
     tags: z.array(z.string()).default([]),
+    pubTime: z.string().optional(),
     affiliate: z.boolean().default(false)
   })
 });
