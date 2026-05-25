@@ -156,8 +156,8 @@ function getTopicIcon(tags: string[]) {
       </div>
 
       <div class="content-grid">
-        <div>
-          {otherPosts.slice(0, 3).map((post) => {
+        <div class="article-list">
+          {otherPosts.map((post) => {
             const topic = getTopicIcon(post.data.tags);
             return (
               <article class="article-card">
@@ -180,26 +180,6 @@ function getTopicIcon(tags: string[]) {
                         );
                       })}
                     </div>
-                  </div>
-                </div>
-              </article>
-            );
-          })}
-        </div>
-
-        <div>
-          {otherPosts.slice(3).map((post) => {
-            const topic = getTopicIcon(post.data.tags);
-            return (
-              <article class="article-card">
-                <div class="article-card-with-thumb">
-                  <div class="topic-thumb" style={`background: linear-gradient(135deg, ${topic.color}22, ${topic.color}0a);`}>
-                    <span style={`color: ${topic.color};`}>{topic.icon}</span>
-                  </div>
-                  <div>
-                    <h3><a href={withBase(`/news/${post.id}/`)}>{post.data.title}</a></h3>
-                    <p>{post.data.description}</p>
-                    <div class="meta">{formatPostDate(post)}</div>
                   </div>
                 </div>
               </article>
