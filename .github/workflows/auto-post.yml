@@ -1,0 +1,58 @@
+name: Auto Post AI News
+
+on:
+  schedule:
+    - cron: '0 22 * * *'   # 7:00 JST (前日22:00 UTC)
+    - cron: '0 10 * * *'   # 19:00 JST
+  workflow_dispatch:        # 手動実行・テスト用
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+          cache-dependency-path: scripts/requirements.txt
+
+      - name: Install dependencies
+        run: pip install -r scripts/requirements.txt
+
+      - name: Generate articles
+        run: python scripts/auto_post.py
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v7
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          branch: draft/auto-${{ github.run_number }}
+          base: main
+          title: "[自動] AIニュース記事 ${{ env.POST_DATE }} ${{ env.POST_TIME }}"
+          body: |
+            ## 自動生成された記事（最大2記事）
+
+            copywriting → quality-editor の2ステップで生成されています。
+
+            ### 確認方法
+            - 「Files changed」タブで記事内容を確認できます
+            - 問題なければ「Merge pull request」でサイトに公開されます
+            - 気に入らない記事は当該ファイルを削除してからMergeしてください
+
+            ---
+            *このPRはGitHub Actionsにより自動作成されました*
+          labels: auto-post
+          draft: false
+          delete-branch: true
+          commit-message: "chore: auto-post ${{ env.POST_DATE }} ${{ env.POST_TIME }}"
+          author: "github-actions[bot] <github-actions[bot]@users.noreply.github.com>"
