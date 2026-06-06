@@ -1,9 +1,9 @@
 name: Auto Post AI News
 
 on:
-  schedule:
-    - cron: '0 22 * * *'   # 7:00 JST (前日22:00 UTC)
-    - cron: '0 10 * * *'   # 19:00 JST
+  # schedule:
+  #   - cron: '0 22 * * *'   # 7:00 JST (前日22:00 UTC)
+  #   - cron: '0 10 * * *'   # 19:00 JST
   workflow_dispatch:        # 手動実行・テスト用
 
 jobs:
